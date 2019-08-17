@@ -19,6 +19,29 @@ header,
 .btnpad {
   padding: 14px;
 }
+
+/*Body color of index.ejs*/
+.color{
+
+background-color: slategrey;
+}
+
+/*Body color of signup.ejs*/
+.post{
+
+  background-color: slategrey;
+  }
+
+  /*Body color of search.ejs*/
+.find{
+  background-color: slategrey;
+}
+
+/*color of the div sections*/
+.container{
+  background-color: moccasin; 
+}
+
 .loginbtn {
   padding-right: 15px;
   padding-left: 15px;
@@ -73,7 +96,7 @@ input-customize {
   margin-right: 5px;
   border-top-left-radius: 14;
 }
-/*index poge ends */
+/*index pge ends */
 
 /*bijoy css  starts*/
 
@@ -118,7 +141,7 @@ header,
   text-align: center;
 }
 
-/*bijoy css ends*/
+
 
 /*contact us starts*/
 
@@ -137,7 +160,7 @@ header,
 
 .mail-message {
   width: 100%;
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(216, 213, 213, 0.8) !important;
   -webkit-transition: all 0.7s;
   -moz-transition: all 0.7s;
   transition: all 0.7s;
@@ -161,10 +184,10 @@ header,
 .form {
   width: 100%;
   padding: 15px;
-  background: #f8f8f8;
+  background: #f0f0f0;
   border: 1px solid rgba(0, 0, 0, 0.075);
   margin-bottom: 25px;
-  color: #727272 !important;
+  color: #084c5d !important;
   font-size: 13px;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -176,7 +199,7 @@ header,
 }
 
 .form:focus {
-  color: white;
+  color: rgb(199, 194, 194);
   outline: none;
   border: 1px solid #8bc3a3;
 }
@@ -208,7 +231,7 @@ header,
 
 .button:hover {
   background: #8bc3a3;
-  color: white;
+  color: rgb(199, 22, 22);
 }
 
 /* Send Button Styles */
@@ -219,7 +242,7 @@ header,
   height: auto;
   padding: 15px;
   color: #fff;
-  background: #8bc3a3;
+  background: #35a164;
   border: none;
   border-radius: 3px;
   outline: none;
@@ -234,7 +257,7 @@ header,
 
 .form-btn:hover {
   background: #111;
-  color: white;
+  color: rgb(121, 42, 42);
   border: none;
 }
 
@@ -266,9 +289,9 @@ input {
   background: url("/img/33.jpg") no-repeat center center fixed;
 }
 
-/*login poge end*/
+/*login page end*/
 
-/*profile poge start*/
+/*profile page start*/
 input.hidden {
   position: absolute;
   left: -9999px;
@@ -289,4 +312,9 @@ input.hidden {
   border-bottom: 1px #f8f8f8 solid;
   margin: 5px 0 5px 0;
 }
-/*profile poge end*/
+/*profile page end*/
+
+.right-add{
+  background-color: moccasin; 
+}
+

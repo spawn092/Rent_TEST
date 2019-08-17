@@ -1,30 +1,19 @@
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
-const mongo = require("mongodb");
 const path = require("path");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const mongo = require("mongodb");
 const port = process.env.port || 3000;
 
 //database setting
 var db_url =
-  "mongodb+srv://admin1234:admin1234@cluster0-pxexl.mongodb.net/users?retryWrites=true&w=majority";
+  "mongodb+srv://admin1234:admin1234@cluster0-pxexl.mongodb.net/Rent-app?retryWrites=true&w=majority";
 mongoose.connect(db_url, { useNewUrlParser: true });
 
 mongoose.connection.on("error", function(err) {
   console.log(err);
   console.log("Could not connect to mongodb");
-});
-
-mongo.MongoClient.connect(db_url, { useNewUrlParser: true }, function(
-  err,
-  client
-) {
-  if (err) {
-    console.log("Could Not Connect DB");
-  } else {
-    db = client.db("Test");
-  }
 });
 
 //body parser middleware
@@ -37,8 +26,10 @@ app.set("view engine", "ejs");
 
 //set static folder
 app.use(express.static(path.join(__dirname, "public")));
-//import model
+
+//importing model
 const User = require("./model/user");
+const Apartment = require("./model/apartment");
 
 //router link
 app.get("/", (req, res) => {
@@ -74,7 +65,7 @@ app.get("/search", (req, res) => {
   res.render("search");
 });
 app.get("/signup", (req, res) => {
-  console.log("signup");
+  //console.log("signup");
   res.render("signup");
 });
 
@@ -82,6 +73,7 @@ app.get("/apartment", (req, res) => {
   console.log("apartment");
   res.render("apartment");
 });
+
 app.post("/signup", (req, res) => {
   let fName = req.body.first_name;
   let lName = req.body.last_name;
@@ -92,37 +84,52 @@ app.post("/signup", (req, res) => {
   let zip = req.body.zip;
   let password = req.body.password;
   const user = new User({
-    first_name: fName,
-    last_name: lName,
+    firstName: fName,
+    lastName: lName,
     email: email,
     password: password,
     contact: cNum,
     address: address,
-    city:city,
+    city: city
   });
-  user.save((err,data)=>{
-    if (err){
-      return res.status(400);
-    }else{
-      console.log("success")
-      res.end();
-    }
 
-  })
+  user.save((error, data) => {
+    if (error) {
+      return res.status(400).json({ error: error });
+    } else {
+      console.log("success");
+      res.render("index");
+    }
+  });
   //console.log(fName +","+ lName +","+ email +","+ cNum +","+ address +","+ city +","+ zip);
   //res.end();
 });
-app.post("/apartment" ,(req,res)=>{
-  let firstName = req.body.first_name;
-  let lastName = req.body.last_name;
+app.post("/apartment", (req, res) => {
+  let fName = req.body.first_name;
+  let lName = req.body.last_name;
   let house = req.body.house;
   let rent = req.body.rent;
   let address = req.body.Address;
   let city = req.body.city;
   let zip = req.body.zip;
-  console.log(firstName +","+ lastName +","+ house +","+ rent +","+ address +","+ city +","+ zip);
-  res.end();
-})
+  const apartment = new Apartment({
+    firstName: fName,
+    lastName: lName,
+    nameOfHouse: house,
+    rent: rent,
+    address: address,
+    city: city,
+    zip: zip
+  });
+  apartment.save((error, data) => {
+    if (error) {
+      return res.status(401).json({ error: error });
+    } else {
+      console.log("Apartment saved");
+      res.render("index");
+    }
+  });
+});
 
 app.listen(port, () => {
   console.log(`Application is running in ${port}`);
